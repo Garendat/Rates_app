@@ -71,7 +71,7 @@ $('.btn-rates').on('click', function(event) {
                 }
                 })
                 }
-            else if (day === "yesterday" || day === 'two days ago'){
+            else if (day === "yesterday" || day === 'two_days_ago'){
                 $.ajax({
                 url: "myChart/",
                 type: "GET",
