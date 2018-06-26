@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="btn btn-group container-fuild">
+    {% for name in item_name %}
+    <button class="btn btn-default btn-rates" name="{{ name }}" id="{{ name }}">{{ name }}</button>
+    {% endfor %}
+</div>
+
+
+<div class="chart-container" style="position: relative; height:35vh; width:70vw">
+    <canvas id="myChart"></canvas>
+
+
+</div>
+
+
+
+{% endblock %}
