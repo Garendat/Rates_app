@@ -1,10 +1,8 @@
 from datetime import datetime, timedelta
 
-import requests
 from django.http import JsonResponse
 from django.shortcuts import render
 from .models import Rates_all
-# from .tasks import newRates
 
 
 # Create your views here.

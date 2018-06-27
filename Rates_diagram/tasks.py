@@ -1,13 +1,10 @@
-from datetime import timedelta
-
 import requests
-from Rates_app.celery import app as celery
+from Rates_app.celery import app
 
 from .models import Rates_all
-from celery.task import periodic_task
 
 
-@celery.task(run_every=10)
+@app.task
 def newRates():
     item_string = requests.get('https://cryptottlivewebapi.xbtce.net:8443/api/v1/public/level2')
     item_name = ['DSHBTC', 'EMCBTC', 'BTCUSD', 'LTCUSD', 'EURUSD', 'GBPUSD', 'USDCNH', 'LTCRUB', 'EURJPY', 'USDJPY',
@@ -18,3 +15,4 @@ def newRates():
             item['Symbol'] = Rates_all(symbol=item['Symbol'], bid=item['BestBid']['Price'],
                                        ask=item['BestBid']['Volume'])
             item['Symbol'].save()
+    print('eeeeeeexyyyyyyyyyyyyyyy')
