@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import requests
 from django.http import JsonResponse
@@ -20,29 +20,33 @@ def index(request):
 def myChart(request):
     if request.method == 'GET':
         name = request.GET.get('data')
-        # date = request.GET.get('date')
-        # print(name)
-        # print(date)
-        # time = 0
-        # if date == 'today':
-        #     time == datetime.today()
-        # elif date == 'yesterday':
-        #     time = datetime
-        # elif date == 'two days ago':
-        #     time = 0
-        # else:
-        #     time = datetime.today()
-        # rates_date = Rates_all.objects.filter(created=time)
-        rates_name = Rates_all.objects.filter(symbol=name)
+        date = request.GET.get('date')
+        date_now = datetime.today()
+        print(name)
+        print(date)
+        time = 0
+        if date == 'today':
+            time = date_now
+        elif date == 'yesterday':
+            time = date_now - timedelta(days=1)
+        elif date == 'two_days_ago':
+            time = date_now - timedelta(days=2)
+        else:
+            time = date_now
+        print(time.strftime('%B %d, %Y'))
+        rates_all = Rates_all.objects.all()
+        rates_date = rates_all.filter(created__startswith=time.strftime('%Y-%m-%d'))
+        rates_name = rates_date.filter(symbol=name)
         rates_bid = []
         rates_date = []
         for item in rates_name:
             rates_bid.append(item.bid)
-            rates_date.append(item.created)
+            rates_date.append(item.created.strftime('%H.%M'))
         data = {
             'bid': rates_bid,
             'date': rates_date,
         }
+        print(rates_date)
         return JsonResponse(data)
 
 
