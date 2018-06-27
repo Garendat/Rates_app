@@ -22,8 +22,6 @@ def myChart(request):
         name = request.GET.get('data')
         date = request.GET.get('date')
         date_now = datetime.today()
-        print(name)
-        print(date)
         time = 0
         if date == 'today':
             time = date_now
@@ -33,7 +31,6 @@ def myChart(request):
             time = date_now - timedelta(days=2)
         else:
             time = date_now
-        print(time.strftime('%B %d, %Y'))
         rates_all = Rates_all.objects.all()
         rates_date = rates_all.filter(created__startswith=time.strftime('%Y-%m-%d'))
         rates_name = rates_date.filter(symbol=name)
@@ -46,7 +43,6 @@ def myChart(request):
             'bid': rates_bid,
             'date': rates_date,
         }
-        print(rates_date)
         return JsonResponse(data)
 
 
