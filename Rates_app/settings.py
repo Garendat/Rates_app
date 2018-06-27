@@ -15,8 +15,8 @@ import os
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BROKER_URL = "amqp://guest:guest@localhost:5672/"
-CELERY_RESULT_BACKEND = "amqp://guest:guest@localhost:5672/"
+BROKER_URL = "amqp://guest:guest@127.0.0.1:5672/"
+CELERY_RESULT_BACKEND = "amqp://guest:guest@127.0.0.1:5672/"
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
@@ -129,11 +129,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
-
-# CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
-
-# import djcelery
-# djcelery.setup_loader()
 
 
 

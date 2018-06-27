@@ -16,3 +16,4 @@ def newRates():
                                        ask=item['BestBid']['Volume'])
             item['Symbol'].save()
     print('eeeeeeexyyyyyyyyyyyyyyy')
+    return "OK"
