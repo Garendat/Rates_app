@@ -37,8 +37,7 @@ function startInterval(){
        var sampleXX = $.ajax({
             url: "myChart/",
             type: "GET",
-                data: {'data': submitButton,
-                'date': day},
+                data: {'data': submitButton, 'date': day},
                 success: function (data) {
                    setChart(data);
                    }
@@ -63,8 +62,7 @@ $('.btn-rates').on('click', function(event) {
             $.ajax({
                 url: "myChart/",
                 type: "GET",
-                data: {'data': submitButton,
-                'date': day},
+                data: {'data': submitButton, 'date': day},
                 success: function (data) {
                    setChart(data);
                 process = setInterval(startInterval, 5000);
@@ -75,12 +73,11 @@ $('.btn-rates').on('click', function(event) {
                 $.ajax({
                 url: "myChart/",
                 type: "GET",
-                data: {'data': submitButton,
-                        'date': day},
+                data: {'data': submitButton, 'date': day},
                 success: function (data) {
                    setChart(data);
                    }
-                   })
+                   });
                    }
 
 });
